@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CSPM Is Not a Product — It's a Practice | Zeshan Ahmad — GRC Engineered</title>
+  <meta name="description" content="Why buying Wiz, Orca, or ScoutSuite is only the start — and how to build the governance process, finding taxonomy, and escalation model that makes CSPM actually work for cloud risk management." />
+  <meta name="keywords" content="CSPM, cloud security posture management, Wiz, ScoutSuite, cloud risk management, cloud compliance, GRC engineering, SOC 2 cloud, ISO 27001 cloud, cloud risk program" />
+  <meta name="author" content="Zeshan Ahmad" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" />
+  <meta property="og:title" content="CSPM Is Not a Product — It's a Practice" />
+  <meta property="og:description" content="Wiz, ScoutSuite, and the tools are table stakes. The real work is building the process, escalation paths, and risk appetite that make alerts mean something." />
+  <meta property="og:image" content="https://zeshan-ahmad.github.io/assets/images/og-cover.png" />
+  <meta property="og:site_name" content="GRC Engineered by Zeshan Ahmad" />
+  <meta property="article:author" content="Zeshan Ahmad" />
+  <meta property="article:published_time" content="2025-03-15" />
+  <meta property="article:section" content="Cloud Risk" />
+  <meta property="article:tag" content="CSPM" />
+  <meta property="article:tag" content="Wiz" />
+  <meta property="article:tag" content="Cloud Risk" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CSPM Is Not a Product — It's a Practice" />
+  <meta name="twitter:description" content="Why your CSPM tool isn't enough — and how to build the governance practice around it that makes cloud risk management real." />
+  <meta name="twitter:image" content="https://zeshan-ahmad.github.io/assets/images/og-cover.png" />
+  <meta name="twitter:creator" content="@zeshanahmad" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CSPM Is Not a Product — It's a Practice",
+    "description": "How to build a CSPM program that goes beyond tool deployment — covering finding taxonomy, suppression policy, owner mapping, and the metric that tells you if it's working.",
+    "url": "https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html",
+    "datePublished": "2025-03-15",
+    "dateModified": "2025-03-15",
+    "author": {
+      "@type": "Person",
+      "name": "Zeshan Ahmad",
+      "url": "https://zeshan-ahmad.github.io/",
+      "jobTitle": "GRC Specialist"
+    },
+    "publisher": { "@type": "Person", "name": "Zeshan Ahmad", "url": "https://zeshan-ahmad.github.io/" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" },
+    "keywords": ["CSPM", "Wiz", "ScoutSuite", "Cloud Risk", "GRC", "Cloud Security"],
+    "articleSection": "Cloud Risk",
+    "wordCount": 750,
+    "timeRequired": "PT6M"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zeshan-ahmad.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://zeshan-ahmad.github.io/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "CSPM Is Not a Product", "item": "https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/post.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Zeshan Ahmad</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/blog/">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+  <div class="post-header">
+    <div class="post-container">
+      <nav aria-label="Breadcrumb">
+        <a href="/blog/" class="back-link">← Back to all posts</a>
+      </nav>
+      <p class="post-cat">Cloud Risk</p>
+      <h1 class="post-h-title">CSPM Is Not a Product — It's a Practice</h1>
+      <div class="post-h-meta">
+        <span itemscope itemtype="https://schema.org/Person"><span itemprop="name">Zeshan Ahmad</span></span>
+        <span><time datetime="2025-03-15">Mar 2025</time></span>
+        <span>6 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="post-container">
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2025-03-15" />
+        <meta itemprop="author" content="Zeshan Ahmad" />
+      <div class="post-content" itemprop="articleBody">
+
+        <p>Every year, organizations buy CSPM tools — Wiz, Orca, Prisma Cloud, ScoutSuite — and declare their cloud risk posture "managed." Then six months later they're drowning in alerts they don't understand, with findings that have been open for ninety days, and no clear answer to the question: <em>are we actually more secure?</em></p>
+
+        <p>CSPM tools are necessary. They're not sufficient. Here's what the gap looks like and how to close it.</p>
+
+        <h2>What the tool gives you</h2>
+
+        <p>Modern CSPM tools are genuinely impressive. Wiz, in particular, builds a cloud security graph that maps relationships between resources — so instead of seeing "this S3 bucket is public," you see "this public S3 bucket is accessible to this IAM role that is also attached to this EC2 instance that has this network path." That context changes the risk conversation significantly.</p>
+
+        <p>What the tool gives you: visibility, prioritization signals, and a compliance mapping scaffold. It identifies misconfigurations against CIS benchmarks, SOC 2, ISO 27001, and other frameworks. It alerts on drift. It produces reports.</p>
+
+        <h2>What the tool doesn't give you</h2>
+
+        <p>The tool cannot tell you what your risk appetite is. It cannot decide which findings are acceptable given your architecture choices. It cannot escalate intelligently to the right owner. It cannot close tickets. It cannot explain to your auditor why you chose to accept a specific risk.</p>
+
+        <p>These are all governance problems. And they require governance solutions.</p>
+
+        <blockquote>
+          <p>A CSPM tool without a response process is just an expensive way to feel anxious about your cloud environment.</p>
+        </blockquote>
+
+        <h2>Building the practice around the tool</h2>
+
+        <p>The operational model that works:</p>
+
+        <h3>1. Define your finding taxonomy before you deploy</h3>
+        <p>Critical, High, Medium, Low — these are just labels until you attach SLAs and owners to them. Before you go live with CSPM, define: what does "Critical" mean in our environment, who owns remediation, and what's the response SLA? Document this as a policy, not just a verbal agreement.</p>
+
+        <h3>2. Suppress noise deliberately</h3>
+        <p>Every CSPM tool ships with default rulesets that will generate hundreds of findings in any reasonably complex environment. Some of those findings are irrelevant to your architecture. Some are mitigated by compensating controls. Some represent accepted risks.</p>
+        <p>Build a suppression policy. Every suppressed finding needs a documented rationale and a review date. Your suppression list is evidence — treat it that way.</p>
+
+        <h3>3. Map findings to control owners, not teams</h3>
+        <p>Assigning CSPM findings to "the cloud team" or "DevOps" is a path to nothing getting remediated. Map findings to specific control owners who have the accountability and access to act. This requires working with engineering to understand who actually owns what.</p>
+
+        <h3>4. Close the loop with your GRC tool</h3>
+        <p>CSPM findings that map to compliance controls should create tickets in your GRC platform (Drata, Vanta, Jira, whatever you use). This is where the compliance evidence trail gets built. A finding that was opened, remediated, and closed — with timestamps — is meaningful evidence. A screenshot from Wiz is not.</p>
+
+        <h2>The ScoutSuite use case</h2>
+
+        <p>ScoutSuite is open source and worth having in your toolkit alongside commercial tooling. It's excellent for point-in-time assessments — particularly useful for third-party risk assessments where you need a read-only snapshot of a vendor's AWS environment without giving them access to your CSPM tenant.</p>
+
+        <p>The output is a structured HTML report with findings organized by service. Not as polished as Wiz, but the data is solid and the no-cost factor matters when you're doing TPRM at scale.</p>
+
+        <h2>The honest metric</h2>
+
+        <p>The metric that tells you whether your CSPM practice is working: mean time to remediation for Critical and High findings, trended over time. If that number is going down, you have a functioning program. If it's flat or rising despite the tool being deployed, you have a tool problem that a governance solution needs to fix.</p>
+
+        <p>Buy the tool. Build the practice. That's the order that works.</p>
+
+      </div>
+
+      <div class="post-footer">
+        <div>
+          <p class="share-label">Share</p>
+          <div class="share-links">
+            <a href="https://linkedin.com/shareArticle?url=https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" class="share-btn" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?url=https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html" class="share-btn" target="_blank" rel="noopener noreferrer">𝕏 Twitter</a>
+          </div>
+        </div>
+        <a href="/blog/" class="btn-back">← All posts</a>
+      </div>
+      </article>
+    </div>
+  </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 Zeshan Ahmad · <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="https://linkedin.com/in/zeshan-ahmad" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  </footer>
+
+</body>
+</html>
