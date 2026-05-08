@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Automating Compliance Evidence with AWS SSM and Splunk | Zeshan Ahmad — GRC Engineered</title>
+  <meta name="description" content="Step-by-step guide to building an automated SOC 2 compliance evidence pipeline using AWS Systems Manager (SSM) and Splunk. Reduce manual audit burden and generate continuous control evidence at scale." />
+  <meta name="keywords" content="AWS SSM compliance, Splunk GRC, SOC 2 automation, compliance evidence automation, AWS Systems Manager, GRC engineering, audit automation, compliance pipeline, policy as code" />
+  <meta name="author" content="Zeshan Ahmad" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" />
+  <meta property="og:title" content="Automating Compliance Evidence with AWS SSM and Splunk" />
+  <meta property="og:description" content="Why manual evidence collection is a liability, and how to build an automated pipeline that maps SSM outputs directly to SOC 2 control evidence." />
+  <meta property="og:image" content="https://zeshan-ahmad.github.io/assets/images/og-cover.png" />
+  <meta property="og:site_name" content="GRC Engineered by Zeshan Ahmad" />
+  <meta property="article:author" content="Zeshan Ahmad" />
+  <meta property="article:published_time" content="2025-04-10" />
+  <meta property="article:section" content="GRC Engineering" />
+  <meta property="article:tag" content="AWS SSM" />
+  <meta property="article:tag" content="Splunk" />
+  <meta property="article:tag" content="SOC 2" />
+  <meta property="article:tag" content="Compliance Automation" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Automating Compliance Evidence with AWS SSM and Splunk" />
+  <meta name="twitter:description" content="Build an automated SOC 2 evidence pipeline using AWS Systems Manager and Splunk — step by step." />
+  <meta name="twitter:image" content="https://zeshan-ahmad.github.io/assets/images/og-cover.png" />
+  <meta name="twitter:creator" content="@zeshanahmad" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Automating Compliance Evidence with AWS SSM and Splunk",
+    "description": "A practical guide to building an automated compliance evidence pipeline using AWS Systems Manager and Splunk, mapped to SOC 2 controls.",
+    "url": "https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html",
+    "datePublished": "2025-04-10",
+    "dateModified": "2025-04-10",
+    "author": {
+      "@type": "Person",
+      "name": "Zeshan Ahmad",
+      "url": "https://zeshan-ahmad.github.io/",
+      "jobTitle": "GRC Specialist"
+    },
+    "publisher": { "@type": "Person", "name": "Zeshan Ahmad", "url": "https://zeshan-ahmad.github.io/" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" },
+    "keywords": ["AWS SSM", "Splunk", "SOC 2", "Compliance Automation", "GRC Engineering", "Evidence Collection"],
+    "articleSection": "GRC Engineering",
+    "wordCount": 900,
+    "timeRequired": "PT9M"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zeshan-ahmad.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://zeshan-ahmad.github.io/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Automating Compliance Evidence", "item": "https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../../assets/css/post.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Zeshan Ahmad</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/blog/">Writing</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+  <div class="post-header">
+    <div class="post-container">
+      <nav aria-label="Breadcrumb">
+        <a href="/blog/" class="back-link">← Back to all posts</a>
+      </nav>
+      <p class="post-cat">GRC Engineering</p>
+      <h1 class="post-h-title">Automating Compliance Evidence with AWS SSM and Splunk</h1>
+      <div class="post-h-meta">
+        <span itemscope itemtype="https://schema.org/Person"><span itemprop="name">Zeshan Ahmad</span></span>
+        <span><time datetime="2025-04-10">Apr 2025</time></span>
+        <span>9 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="post-container">
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <meta itemprop="datePublished" content="2025-04-10" />
+        <meta itemprop="author" content="Zeshan Ahmad" />
+      <div class="post-content" itemprop="articleBody">
+
+        <p>Manual evidence collection is one of the most expensive and error-prone parts of any compliance program. Auditors request evidence. Someone digs through dashboards, exports CSVs, screenshots configurations, and compiles it all into a folder. Then the audit period ends, and six months later you do it again.</p>
+
+        <p>There's a better way — and it starts with treating your cloud infrastructure as a continuous evidence source rather than something you query only when auditors ask.</p>
+
+        <h2>The problem with manual evidence</h2>
+
+        <p>Manual evidence collection has three structural weaknesses:</p>
+
+        <ul>
+          <li><strong>Point-in-time snapshots</strong> — evidence collected in November doesn't tell you whether controls were operating in February</li>
+          <li><strong>Human error</strong> — screenshots get mislabeled, exports have wrong date ranges, controls get confused</li>
+          <li><strong>Audit lag</strong> — by the time you're collecting evidence, the control may have drifted</li>
+        </ul>
+
+        <p>Automated pipelines solve all three. Let's build one.</p>
+
+        <h2>Architecture overview</h2>
+
+        <p>The pipeline I built at Splunk uses three layers:</p>
+
+        <ol>
+          <li><strong>AWS Systems Manager (SSM)</strong> — collects configuration state and patch compliance data from EC2 instances</li>
+          <li><strong>Splunk HEC (HTTP Event Collector)</strong> — ingests SSM outputs as structured events</li>
+          <li><strong>Splunk dashboards + scheduled searches</strong> — continuously map events to SOC 2 control requirements</li>
+        </ol>
+
+        <p>The result: every night, the system generates a compliance posture report that maps directly to your SOC 2 control matrix. No manual collection required for the controls SSM covers.</p>
+
+        <h2>Setting up SSM State Manager</h2>
+
+        <p>SSM State Manager lets you define desired configuration states for your fleet and continuously assess whether instances conform. For compliance purposes, the most valuable associations are:</p>
+
+        <pre><code># Example SSM Association for patch compliance
+aws ssm create-association \
+  --name "AWS-GatherSoftwareInventory" \
+  --targets "Key=tag:Environment,Values=production" \
+  --schedule-expression "rate(1 day)" \
+  --parameters '{"applications":["Enabled"],"networkConfig":["Enabled"]}'</code></pre>
+
+        <p>For SOC 2 CC6.1 (logical access controls), you can use SSM to collect IAM configuration data. For CC7.1 (change detection), SSM Inventory gives you a continuous baseline of installed software, network configurations, and running services.</p>
+
+        <h2>Shipping to Splunk via HEC</h2>
+
+        <p>Once SSM is collecting data, a Lambda function fires on EventBridge to ship the data to Splunk:</p>
+
+        <pre><code>import json, boto3, urllib.request
+
+def lambda_handler(event, context):
+    ssm = boto3.client('ssm')
+    
+    # Pull latest compliance summary
+    response = ssm.list_compliance_summaries()
+    
+    payload = json.dumps({
+        "time": int(__import__('time').time()),
+        "sourcetype": "aws:ssm:compliance",
+        "event": response['ComplianceSummaryItems']
+    })
+    
+    req = urllib.request.Request(
+        "https://your-splunk-hec-endpoint/services/collector",
+        data=payload.encode(),
+        headers={"Authorization": "Splunk YOUR_HEC_TOKEN"},
+        method="POST"
+    )
+    urllib.request.urlopen(req)</code></pre>
+
+        <h2>Mapping to SOC 2 controls in Splunk</h2>
+
+        <p>The real value is in the search layer. A saved search like this generates continuous evidence for CC6.8 (malicious software prevention):</p>
+
+        <pre><code>index=compliance sourcetype="aws:ssm:compliance"
+| where ComplianceType="Patch"
+| stats count(eval(Status="COMPLIANT")) as compliant,
+        count(eval(Status="NON_COMPLIANT")) as non_compliant by ResourceId
+| eval compliance_rate=round((compliant/(compliant+non_compliant))*100,1)
+| where compliance_rate < 95
+| table ResourceId, compliance_rate, non_compliant</code></pre>
+
+        <p>Schedule this search daily. Alert on drift. Export results quarterly to your audit evidence folder automatically using Splunk's scheduled PDF export.</p>
+
+        <h2>Controls this pipeline covers</h2>
+
+        <p>A well-configured SSM + Splunk pipeline can produce continuous evidence for roughly 15–20% of a typical SOC 2 control set — particularly across CC6, CC7, and A1 (availability). That's not everything, but it's the part that historically consumes the most manual effort.</p>
+
+        <h2>What this doesn't replace</h2>
+
+        <p>Automated evidence is a floor, not a ceiling. Auditors still need to understand <em>why</em> controls exist and how exceptions are managed. The automation handles the "did this happen" question. You still need humans to answer "does this control design make sense" and "how did you respond when it failed."</p>
+
+        <p>Build the pipeline, then build the narrative around it.</p>
+
+      </div>
+
+      <div class="post-footer">
+        <div>
+          <p class="share-label">Share</p>
+          <div class="share-links">
+            <a href="https://linkedin.com/shareArticle?url=https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" class="share-btn" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?url=https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html" class="share-btn" target="_blank" rel="noopener noreferrer">𝕏 Twitter</a>
+          </div>
+        </div>
+        <a href="/blog/" class="btn-back">← All posts</a>
+      </div>
+      </article>
+    </div>
+  </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 Zeshan Ahmad · <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="https://linkedin.com/in/zeshan-ahmad" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  </footer>
+
+</body>
+</html>
