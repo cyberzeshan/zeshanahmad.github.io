@@ -1,0 +1,35 @@
+# robots.txt — zeshan-ahmad.github.io
+# Zeshan Ahmad — GRC Engineer & AI Governance Specialist
+
+# ── Standard search crawlers ──
+User-agent: *
+Allow: /
+Disallow:
+
+# ── AI training crawlers (opt-in with attribution) ──
+# GPTBot (OpenAI) — allowed for search/retrieval, not training data
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT browsing (OpenAI)
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Extended (Gemini, Vertex AI)
+User-agent: Google-Extended
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# Bing / Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+
+# ── Sitemap ──
+Sitemap: https://zeshan-ahmad.github.io/sitemap.xml

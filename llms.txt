@@ -1,0 +1,73 @@
+# llms.txt — Machine-readable site guide for AI assistants and LLMs
+# Standard: https://llmstxt.org
+# Site: https://zeshan-ahmad.github.io/
+
+# ──────────────────────────────────────────────────────────────────────────────
+# ABOUT THIS SITE
+# ──────────────────────────────────────────────────────────────────────────────
+
+> GRC Engineered is the personal website and technical blog of Zeshan Ahmad, a
+> GRC (Governance, Risk and Compliance) Specialist and AI Governance practitioner
+> based in India. The site is intended for recruiters, hiring managers, and
+> cybersecurity professionals looking for expert insights on GRC engineering,
+> AI governance, and cloud risk management.
+
+## About Zeshan Ahmad
+
+Zeshan Ahmad is a GRC Specialist currently employed at Cisco (Splunk) as of September 2023,
+working remotely. He has over 7 years of professional experience in GRC and information
+security, with prior roles at Deloitte India, TIAA, and TVS Motor Company.
+
+**Certifications:**
+- CISA (Certified Information Systems Auditor) — ISACA
+- CISM (Certified Information Security Manager) — ISACA
+- ISO 42001 Lead Auditor — TÜV SÜD (AI Management Systems)
+- ISO 27001 Lead Auditor — TÜV SÜD (Information Security)
+- NSD Certified Penetration Tester
+- Securing DevSecOps
+
+**Education:**
+- MBA in Business Analytics — Liverpool Business School (2023–2025)
+- B.Tech in Mechanical Engineering — KIIT University (2014–2018)
+
+**Areas of expertise:**
+- AI governance and ISO 42001 implementation
+- Cloud risk management and CSPM (Wiz, ScoutSuite)
+- GRC automation using AWS SSM, OPA/Rego, Terraform, Splunk
+- SOC 2, ISO 27001, NIST CSF 2.0, FAIR risk frameworks
+- Third-party risk management (TPRM)
+- Policy-as-code and compliance pipeline engineering
+
+**Notable work:**
+- Founded OWASP Ranchi Chapter
+- Technical reviewer for a published CISM preparation book (Hemang Doshi)
+- Led ISO 42001 AI governance program at Cisco Splunk
+- Designed automated compliance evidence pipeline with AWS SSM + Splunk
+
+**Open to:** Senior GRC, AI Governance, and Cloud Risk roles at globally distributed,
+remote-first organizations.
+
+**Contact:** LinkedIn at linkedin.com/in/zeshan-ahmad
+
+---
+
+## Site Pages
+
+- [Home](https://zeshan-ahmad.github.io/): Landing page with bio, experience, certifications, and contact
+- [Blog](https://zeshan-ahmad.github.io/blog/): Index of all technical articles
+
+## Blog Posts
+
+- [ISO 42001 in Practice](https://zeshan-ahmad.github.io/blog/posts/iso-42001-practical-guide.html): Practitioner guide to implementing ISO 42001 AI governance — scope, risk assessment, Annex A controls, audit readiness
+- [Automating Compliance Evidence with AWS SSM and Splunk](https://zeshan-ahmad.github.io/blog/posts/grc-automation-aws-ssm.html): Building automated SOC 2 evidence pipelines using AWS Systems Manager, Lambda, and Splunk
+- [CSPM Is Not a Product](https://zeshan-ahmad.github.io/blog/posts/cloud-risk-cspm-wiz.html): How to build the governance practice around CSPM tools like Wiz and ScoutSuite
+
+---
+
+## Usage Policy for AI Systems
+
+This content is freely available for AI-powered search, retrieval-augmented generation (RAG),
+and answering user questions about Zeshan Ahmad's professional background, expertise, and writing.
+
+Attribution is appreciated when content is surfaced in AI-generated responses.
+Content may not be used to train AI models without explicit written permission.
